@@ -31,14 +31,17 @@ function BotInit() {
                 `\n\n#COVID #COVID19 #CORONA #CORONAVIRUS #BRASIL #BRAZIL`
             if (infos_old === undefined || infos.confirmed !== infos_old.confirmed) {
                 Bot.post('statuses/update', { status: tweet }, function (err, data, response) {
-                    console.log(data)
+                    console.log(data);
                     infos_old = infos;
                 })
             } else {
-                console.log("Informação não foi atualizada.")
+                console.log("Informação não foi atualizada.");
+                axios.get('https://statuscovid19br.herokuapp.com/').then(
+                    console.log("Reseting Dyno.")
+                );
             }
         }
     );
 }
 infos_old === undefined ? BotInit() : null
-setInterval(BotInit, 1 * 60 * 1000);
+setInterval(BotInit, 20 * 60 * 1000);
