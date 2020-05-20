@@ -1,10 +1,12 @@
 require('dotenv').config();
+var express = require('express');
 var Twit = require('twit');
 var axios = require('axios').default;
 var moment = require('moment');
 var infos;
 var infos_old;
 const PORT = process.env.PORT || 3000;
+var app = express();
 app.listen(PORT, () => {
     console.log(`App is running on port ${ PORT }`);
 });
