@@ -41,4 +41,4 @@ function BotInit() {
     );
 }
 infos_old === undefined ? BotInit() : null
-setInterval(BotInit, 30 * 60 * 1000);
+setInterval(BotInit, 1 * 60 * 1000);
