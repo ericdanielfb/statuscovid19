@@ -19,21 +19,29 @@ const Bot = new Twit({
 });
 console.log('Bot inicializado.');
 function BotInit() {
+    var daily_deaths;
+    axios.get('https://brasil.io/covid19/historical/daily/').then(
+        response => {
+            daily_deaths = response.data.from_states.new_deaths[response.data.from_states.new_deaths.length-1];
+        }
+    );
     axios.get('https://brasil.io/covid19/cities/cases/').then(
         response => {
             infos = response.data.total;
             var tweet = `Informações do Brasil` +
                 `\n\nCasos confirmados: ${infos.confirmed.toLocaleString('pt-BR').replace(',', '.')}` +
-                `\nMortes registradas: ${infos.deaths.toLocaleString('pt-BR').replace(',', '.')}` +
+                `\nMortes registradas (acumulado): ${infos.deaths.toLocaleString('pt-BR').replace(',', '.')}` +
+                `\nMortes registradas (dia): ${daily_deaths}` +
                 `\nPercentual de letalidade: ${infos.death_rate_percent.toFixed(2)}%` +
-                `\n\nÚltima atualização: ${moment(infos.date_str).format('LL')}` +
+                `\n\nDados referentes a ${moment(infos.date_str).format('LL')}.` +
                 `\nFonte: https://brasil.io/` +
                 `\n\n#COVID #COVID19 #CORONA #CORONAVIRUS #BRASIL #BRAZIL`
             if (infos_old === undefined || infos.confirmed !== infos_old.confirmed) {
                 Bot.post('statuses/update', { status: tweet }, function (err, data, response) {
-                    console.log(data);
+                    !err ? console.log(tweet) : console.log(data);
                     infos_old = infos;
                 })
+                console.log(tweet);
             } else {
                 console.log("Informação não foi atualizada.");
             }
