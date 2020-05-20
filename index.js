@@ -47,7 +47,7 @@ function BotInit() {
             }
             axios.get('https://statuscovid19br.herokuapp.com/').catch(
                 _ => {
-                    console.log("Reseting Dyno.")
+                    console.log("Reinicializando Dyno.")
                 }
             );
         }
