@@ -8,7 +8,7 @@ var infos_old;
 const PORT = process.env.PORT || 3000;
 var app = express();
 app.listen(PORT, () => {
-    console.log(`App is running on port ${ PORT }`);
+    console.log(`App is running on port ${PORT}`);
 });
 moment.locale('pt-BR');
 const Bot = new Twit({
@@ -36,10 +36,10 @@ function BotInit() {
                 })
             } else {
                 console.log("Informação não foi atualizada.");
-                axios.get('https://statuscovid19br.herokuapp.com/').then(
-                    console.log("Reseting Dyno.")
-                );
             }
+            axios.get('https://statuscovid19br.herokuapp.com/').then(
+                console.log("Reseting Dyno.")
+            );
         }
     );
 }
