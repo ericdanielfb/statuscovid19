@@ -4,6 +4,10 @@ var axios = require('axios').default;
 var moment = require('moment');
 var infos;
 var infos_old;
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`App is running on port ${ PORT }`);
+});
 moment.locale('pt-BR');
 const Bot = new Twit({
     consumer_key: process.env.CONSUMER_KEY,
