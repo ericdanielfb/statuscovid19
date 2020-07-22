@@ -36,7 +36,7 @@ function BotInit() {
                 `\n\nDados referentes a ${moment(infos.date_str).format('LL')}.` +
                 `\nFonte: https://brasil.io/` +
                 `\n\n#COVID #COVID19 #CORONA #CORONAVIRUS #BRASIL #BRAZIL`
-            if (infos_old === undefined || infos.confirmed !== infos_old.confirmed) {
+            if (infos_old === undefined || infos.confirmed > infos_old.confirmed) {
                 Bot.post('statuses/update', { status: tweet }, function (err, data, response) {
                     !err ? console.log(tweet) : console.log(data);
                     infos_old = infos;
