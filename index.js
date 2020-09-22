@@ -35,7 +35,7 @@ function BotInit() {
                 `\nPercentual de letalidade: ${infos.death_rate_percent.toFixed(2)}%` +
                 `\n\nDados referentes a ${moment(infos.date_str).format('LL')}.` +
                 `\nFonte: https://brasil.io/` +
-                `\n\n#COVID #COVID19 #CORONA #CORONAVIRUS #BRASIL #BRAZIL`
+                `\n\n#COVID19 #CORONAVIRUS #BRASIL #BRAZIL`
             if (infos_old === undefined || infos.confirmed !== infos_old.confirmed) {
                 Bot.post('statuses/update', { status: tweet }, function (err, data, response) {
                     !err ? console.log(tweet) : console.log(data);
